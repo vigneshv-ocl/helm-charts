@@ -22,6 +22,11 @@ data:
       </parse>
     </source>
 
+    <filter kubernetes.**>
+      @type kubernetes_metadata
+      @id filter_kube_metadata
+    </filter> 
+
     <filter **akash-provider**>
       @type record_transformer
       <record>

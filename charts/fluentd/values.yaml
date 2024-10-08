@@ -265,8 +265,8 @@ dashboards:
 
 ## Fluentd list of plugins to install
 ##
-plugins: []
-# - fluent-plugin-out-http
+plugins:
+- fluent-plugin-kubernetes_metadata_filter
 
 ## Add fluentd config files from K8s configMaps
 ##
