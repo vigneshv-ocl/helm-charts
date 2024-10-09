@@ -25,7 +25,7 @@ data:
     <filter **akash-provider**>
       @type record_transformer
       <record>
-        cluster "h100-wdc-val-akash-pub"
+        cluster "h100-sdg-val-akash-pub"
         pod "akash-provider-0"
       </record>
     </filter>
@@ -36,7 +36,7 @@ data:
       port 9200
       scheme http  # Change to HTTP since TLS is disabled
       logstash_format true
-      logstash_prefix h100-wdc-val-akash-pub  # Custom index name
+      logstash_prefix h100-sdg-val-akash-pub  # Custom index name
       include_timestamp true
       flush_interval 5s
       request_timeout 30s  # Add timeout setting
@@ -57,7 +57,7 @@ data:
     <filter **operator-inventory**>
       @type record_transformer
       <record>
-        cluster "h100-wdc-val-akash-pub"
+        cluster "h100-sdg-val-akash-pub"
         pod "operator-inventory"
       </record>
     </filter>
@@ -68,7 +68,7 @@ data:
       port 9200
       scheme http  # Change to HTTP since TLS is disabled
       logstash_format true
-      logstash_prefix h100-wdc-val-akash-pub-operator-inventory  # Custom index name
+      logstash_prefix h100-sdg-val-akash-pub-operator-inventory  # Custom index name
       include_timestamp true
       flush_interval 5s
       request_timeout 30s  # Add timeout setting
@@ -89,7 +89,7 @@ data:
     <filter **operator-hostname**>
       @type record_transformer
       <record>
-        cluster "h100-wdc-val-akash-pub"
+        cluster "h100-sdg-val-akash-pub"
         pod "operator-hostname"
       </record>
     </filter>
@@ -100,7 +100,7 @@ data:
       port 9200
       scheme http  # Change to HTTP since TLS is disabled
       logstash_format true
-      logstash_prefix h100-wdc-val-akash-pub-operator-hostname # Custom index name
+      logstash_prefix h100-sdg-val-akash-pub-operator-hostname # Custom index name
       include_timestamp true
       flush_interval 5s
       request_timeout 30s  # Add timeout setting
@@ -121,7 +121,7 @@ data:
     <filter **operator-inventory-hardware-discovery**>
       @type record_transformer
       <record>
-        cluster "h100-wdc-val-akash-pub"
+        cluster "h100-sdg-val-akash-pub"
         pod "operator-inventory-hardware-discovery"
       </record>
     </filter>
@@ -132,7 +132,7 @@ data:
       port 9200
       scheme http  # Change to HTTP since TLS is disabled
       logstash_format true
-      logstash_prefix h100-wdc-val-akash-pub-operator-inventory-hardware-discovery # Custom index name
+      logstash_prefix h100-sdg-val-akash-pub-operator-inventory-hardware-discovery # Custom index name
       include_timestamp true
       flush_interval 5s
       request_timeout 30s  # Add timeout setting
