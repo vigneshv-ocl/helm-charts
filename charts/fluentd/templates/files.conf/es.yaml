@@ -25,18 +25,18 @@ data:
     <filter **akash-provider**>
       @type record_transformer
       <record>
-        cluster "h100-mon-obl-akash-pub"
+        cluster "test-fluentd"
         pod "akash-provider-0"
       </record>
     </filter>
 
     <match **akash-provider**>
       @type elasticsearch
-      host "100.70.2.34"  # Elasticsearch server IP
+      host "34.66.24.248"  # Elasticsearch server IP
       port 9200
       scheme http  # Change to HTTP since TLS is disabled
       logstash_format true
-      logstash_prefix h100-mon-obl-akash-pub  # Custom index name
+      logstash_prefix test-fluentd  # Custom index name
       include_timestamp true
       flush_interval 5s
       request_timeout 30s  # Add timeout setting
@@ -57,18 +57,18 @@ data:
     <filter **operator-inventory**>
       @type record_transformer
       <record>
-        cluster "h100-mon-obl-akash-pub"
+        cluster "test-fluentd"
         pod "operator-inventory"
       </record>
     </filter>
 
     <match **operator-inventory**>
       @type elasticsearch
-      host "100.70.2.34"
+      host "34.66.24.248"
       port 9200
       scheme http  # Change to HTTP since TLS is disabled
       logstash_format true
-      logstash_prefix h100-mon-obl-akash-pub-operator-inventory  # Custom index name
+      logstash_prefix test-fluentd-operator-inventory  # Custom index name
       include_timestamp true
       flush_interval 5s
       request_timeout 30s  # Add timeout setting
@@ -89,18 +89,18 @@ data:
     <filter **operator-hostname**>
       @type record_transformer
       <record>
-        cluster "h100-mon-obl-akash-pub"
+        cluster "test-fluentd"
         pod "operator-hostname"
       </record>
     </filter>
 
     <match **operator-hostname**>
       @type elasticsearch
-      host "100.70.2.34"
+      host "34.66.24.248"
       port 9200
       scheme http  # Change to HTTP since TLS is disabled
       logstash_format true
-      logstash_prefix h100-mon-obl-akash-pub-operator-hostname # Custom index name
+      logstash_prefix test-fluentd-operator-hostname # Custom index name
       include_timestamp true
       flush_interval 5s
       request_timeout 30s  # Add timeout setting
@@ -121,18 +121,18 @@ data:
     <filter **operator-inventory-hardware-discovery**>
       @type record_transformer
       <record>
-        cluster "h100-mon-obl-akash-pub"
+        cluster "test-fluentd"
         pod "operator-inventory-hardware-discovery"
       </record>
     </filter>
 
     <match **operator-inventory-hardware-discovery**>
       @type elasticsearch
-      host "100.70.2.34"
+      host "34.66.24.248"
       port 9200
       scheme http  # Change to HTTP since TLS is disabled
       logstash_format true
-      logstash_prefix h100-mon-obl-akash-pub-operator-inventory-hardware-discovery # Custom index name
+      logstash_prefix test-fluentd-operator-inventory-hardware-discovery # Custom index name
       include_timestamp true
       flush_interval 5s
       request_timeout 30s  # Add timeout setting
