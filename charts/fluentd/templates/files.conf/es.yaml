@@ -35,6 +35,7 @@ data:
       host "34.66.24.248"  # Elasticsearch server IP
       port 9200
       scheme https  # Change to https since TLS is disabled
+      ssl_verify false
       logstash_format true
       logstash_prefix test-fluentd  # Custom index name
       include_timestamp true
@@ -67,6 +68,7 @@ data:
       host "34.66.24.248"
       port 9200
       scheme https  # Change to https since TLS is disabled
+      ssl_verify false
       logstash_format true
       logstash_prefix test-fluentd-operator-inventory  # Custom index name
       include_timestamp true
@@ -99,6 +101,7 @@ data:
       host "34.66.24.248"
       port 9200
       scheme https  # Change to https since TLS is disabled
+      ssl_verify false
       logstash_format true
       logstash_prefix test-fluentd-operator-hostname # Custom index name
       include_timestamp true
@@ -131,6 +134,7 @@ data:
       host "34.66.24.248"
       port 9200
       scheme https  # Change to https since TLS is disabled
+      ssl_verify false
       logstash_format true
       logstash_prefix test-fluentd-operator-inventory-hardware-discovery # Custom index name
       include_timestamp true
