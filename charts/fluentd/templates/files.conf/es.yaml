@@ -40,6 +40,18 @@ data:
       include_timestamp true
       flush_interval 5s
       request_timeout 30s  # Add timeout setting
+      <buffer>
+        @type file
+        path /var/log/fluentd-buffers/logs.buffer
+        flush_thread_count 2
+        flush_interval 5s
+        chunk_limit_size 8MB
+        queue_limit_length 512
+        retry_forever true
+        retry_type exponential_backoff
+        retry_wait 30s
+        max_retry_wait 300s
+      </buffer>
     </match>
 
     # Source, Filter, and Match for operator-inventory logs
