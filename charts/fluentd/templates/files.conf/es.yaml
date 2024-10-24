@@ -32,7 +32,7 @@ data:
 
     <match **akash-provider**>
       @type elasticsearch
-      host "100.70.2.34"  # Elasticsearch server IP
+      hosts http://100.84.248.28:9200,http://100.68.164.69:9200
       port 9200
       scheme http  # Change to HTTP since TLS is disabled
       logstash_format true
@@ -76,7 +76,7 @@ data:
 
     <match **operator-inventory**>
       @type elasticsearch
-      host "100.70.2.34"
+      hosts http://100.84.248.28:9200,http://100.68.164.69:9200
       port 9200
       scheme http  # Change to HTTP since TLS is disabled
       logstash_format true
@@ -108,7 +108,7 @@ data:
 
     <match **operator-hostname**>
       @type elasticsearch
-      host "100.70.2.34"
+      hosts http://100.84.248.28:9200,http://100.68.164.69:9200
       port 9200
       scheme http  # Change to HTTP since TLS is disabled
       logstash_format true
@@ -140,7 +140,7 @@ data:
 
     <match **operator-inventory-hardware-discovery**>
       @type elasticsearch
-      host "100.70.2.34"
+      hosts http://100.84.248.28:9200,http://100.68.164.69:9200
       port 9200
       scheme http  # Change to HTTP since TLS is disabled
       logstash_format true
