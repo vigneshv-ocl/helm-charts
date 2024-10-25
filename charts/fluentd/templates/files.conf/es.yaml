@@ -38,13 +38,13 @@ data:
       logstash_format true
       logstash_prefix pdx-nb-akash-pub  # Custom index name
       include_timestamp true
-      flush_interval 5s
+      flush_interval 30s
       request_timeout 30s  # Add timeout setting
       <buffer>
         @type file
         path /var/log/fluentd-buffers/logs.buffer
         flush_thread_count 1
-        flush_interval 5s
+        flush_interval 30s
         chunk_limit_size 8MB
         queue_limit_length 512
         retry_forever true
