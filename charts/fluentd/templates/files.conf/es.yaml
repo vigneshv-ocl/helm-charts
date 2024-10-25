@@ -43,7 +43,7 @@ data:
       <buffer>
         @type file
         path /var/log/fluentd-buffers/logs.buffer
-        flush_thread_count 2
+        flush_thread_count 1
         flush_interval 5s
         chunk_limit_size 8MB
         queue_limit_length 512
