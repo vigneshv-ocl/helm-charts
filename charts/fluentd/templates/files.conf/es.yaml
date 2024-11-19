@@ -25,7 +25,7 @@ data:
     <filter **akash-provider**>
       @type record_transformer
       <record>
-        cluster "pdx-nb-akash-pub"
+        cluster "h100-hou-val-akash-pub"
         pod "akash-provider-0"
       </record>
     </filter>
@@ -36,22 +36,10 @@ data:
       port 9200
       scheme http  # Change to HTTP since TLS is disabled
       logstash_format true
-      logstash_prefix pdx-nb-akash-pub  # Custom index name
+      logstash_prefix h100-hou-val-akash-pub  # Custom index name
       include_timestamp true
       flush_interval 30s
       request_timeout 30s  # Add timeout setting
-      <buffer>
-        @type file
-        path /var/log/fluentd-buffers/logs.buffer
-        flush_thread_count 1
-        flush_interval 30s
-        chunk_limit_size 8MB
-        queue_limit_length 512
-        retry_forever true
-        retry_type exponential_backoff
-        retry_wait 30s
-        max_retry_wait 300s
-      </buffer>
     </match>
 
     # Source, Filter, and Match for operator-inventory logs
@@ -69,7 +57,7 @@ data:
     <filter **operator-inventory**>
       @type record_transformer
       <record>
-        cluster "pdx-nb-akash-pub"
+        cluster "h100-hou-val-akash-pub"
         pod "operator-inventory"
       </record>
     </filter>
@@ -80,7 +68,7 @@ data:
       port 9200
       scheme http  # Change to HTTP since TLS is disabled
       logstash_format true
-      logstash_prefix pdx-nb-akash-pub-operator-inventory  # Custom index name
+      logstash_prefix h100-hou-val-akash-pub-operator-inventory  # Custom index name
       include_timestamp true
       flush_interval 5s
       request_timeout 30s  # Add timeout setting
@@ -101,7 +89,7 @@ data:
     <filter **operator-hostname**>
       @type record_transformer
       <record>
-        cluster "pdx-nb-akash-pub"
+        cluster "h100-hou-val-akash-pub"
         pod "operator-hostname"
       </record>
     </filter>
@@ -112,7 +100,7 @@ data:
       port 9200
       scheme http  # Change to HTTP since TLS is disabled
       logstash_format true
-      logstash_prefix pdx-nb-akash-pub-operator-hostname # Custom index name
+      logstash_prefix h100-hou-val-akash-pub-operator-hostname # Custom index name
       include_timestamp true
       flush_interval 5s
       request_timeout 30s  # Add timeout setting
@@ -133,7 +121,7 @@ data:
     <filter **operator-inventory-hardware-discovery**>
       @type record_transformer
       <record>
-        cluster "pdx-nb-akash-pub"
+        cluster "h100-hou-val-akash-pub"
         pod "operator-inventory-hardware-discovery"
       </record>
     </filter>
@@ -144,7 +132,7 @@ data:
       port 9200
       scheme http  # Change to HTTP since TLS is disabled
       logstash_format true
-      logstash_prefix pdx-nb-akash-pub-operator-inventory-hardware-discovery # Custom index name
+      logstash_prefix h100-hou-val-akash-pub-operator-inventory-hardware-discovery # Custom index name
       include_timestamp true
       flush_interval 5s
       request_timeout 30s  # Add timeout setting
