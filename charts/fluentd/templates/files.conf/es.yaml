@@ -25,50 +25,114 @@ data:
     <filter **akash-provider**>
       @type record_transformer
       <record>
-        cluster "rtx4090-evergreen-akash-pub"
+        cluster "rtx-4090-wyo-eg-akash-pub"
         pod "akash-provider-0"
       </record>
     </filter>
 
     <match **akash-provider**>
       @type elasticsearch
-      host "100.70.2.34"  # Elasticsearch server IP
+      hosts http://100.84.248.28:9200,http://100.68.164.69:9200
       port 9200
       scheme http  # Change to HTTP since TLS is disabled
       logstash_format true
-      logstash_prefix rtx4090-evergreen-akash-pub  # Custom index name
+      logstash_prefix rtx-4090-wyo-eg-akash-pub  # Custom index name
       include_timestamp true
-      flush_interval 5s
+      flush_interval 30s
       request_timeout 30s  # Add timeout setting
     </match>
 
-    # Source, Filter, and Match for operator-ip logs
+    # Source, Filter, and Match for operator-inventory logs
     <source>
       @type tail
-      path /var/log/containers/operator-ip-*_akash-services_operator-ip-*.log
-      pos_file /var/log/fluentd-operator-ip.log.pos
+      path /var/log/containers/operator-inventory*.log
+      pos_file /var/log/fluentd-operator-inventory.log.pos
       read_from_head true
-      tag operator-ip
+      tag operator-inventory
       <parse>
         @type none
       </parse>
     </source>
 
-    <filter **operator-ip**>
+    <filter **operator-inventory**>
       @type record_transformer
       <record>
-        cluster "rtx4090-evergreen-akash-pub"
-        pod "operator-ip"
+        cluster "rtx-4090-wyo-eg-akash-pub"
+        pod "operator-inventory"
       </record>
     </filter>
 
-    <match **operator-ip**>
+    <match **operator-inventory**>
       @type elasticsearch
-      host "100.70.2.34"
+      hosts http://100.84.248.28:9200,http://100.68.164.69:9200
       port 9200
       scheme http  # Change to HTTP since TLS is disabled
       logstash_format true
-      logstash_prefix rtx4090-evergreen-akash-pub-operator-ip  # Custom index name
+      logstash_prefix rtx-4090-wyo-eg-akash-pub-operator-inventory  # Custom index name
+      include_timestamp true
+      flush_interval 5s
+      request_timeout 30s  # Add timeout setting
+    </match>
+
+    # Source, Filter, and Match for operator-hostname logs
+    <source>
+      @type tail
+      path /var/log/containers/operator-hostname*.log
+      pos_file /var/log/fluentd-operator-hostname.log.pos
+      read_from_head true
+      tag operator-hostname
+      <parse>
+        @type none
+      </parse>
+    </source>
+
+    <filter **operator-hostname**>
+      @type record_transformer
+      <record>
+        cluster "rtx-4090-wyo-eg-akash-pub"
+        pod "operator-hostname"
+      </record>
+    </filter>
+
+    <match **operator-hostname**>
+      @type elasticsearch
+      hosts http://100.84.248.28:9200,http://100.68.164.69:9200
+      port 9200
+      scheme http  # Change to HTTP since TLS is disabled
+      logstash_format true
+      logstash_prefix rtx-4090-wyo-eg-akash-pub-operator-hostname # Custom index name
+      include_timestamp true
+      flush_interval 5s
+      request_timeout 30s  # Add timeout setting
+    </match>
+
+    # Source, Filter, and Match for operator-inventory-hardware-discovery-node logs
+    <source>
+      @type tail
+      path /var/log/containers/operator-inventory-hardware-discovery*.log
+      pos_file /var/log/operator-inventory-hardware-discovery.log.pos
+      read_from_head true
+      tag operator-inventory-hardware-discovery
+      <parse>
+        @type none
+      </parse>
+    </source>
+
+    <filter **operator-inventory-hardware-discovery**>
+      @type record_transformer
+      <record>
+        cluster "rtx-4090-wyo-eg-akash-pub"
+        pod "operator-inventory-hardware-discovery"
+      </record>
+    </filter>
+
+    <match **operator-inventory-hardware-discovery**>
+      @type elasticsearch
+      hosts http://100.84.248.28:9200,http://100.68.164.69:9200
+      port 9200
+      scheme http  # Change to HTTP since TLS is disabled
+      logstash_format true
+      logstash_prefix rtx-4090-wyo-eg-akash-pub-operator-inventory-hardware-discovery # Custom index name
       include_timestamp true
       flush_interval 5s
       request_timeout 30s  # Add timeout setting
