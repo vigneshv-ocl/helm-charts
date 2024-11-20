@@ -25,7 +25,7 @@ data:
     <filter **akash-provider**>
       @type record_transformer
       <record>
-        cluster "rtx4090-evergreen-akash-pub"
+        cluster "console-akash-network"
         pod "akash-provider-0"
       </record>
     </filter>
@@ -36,7 +36,7 @@ data:
       port 9200
       scheme http  # Change to HTTP since TLS is disabled
       logstash_format true
-      logstash_prefix rtx4090-evergreen-akash-pub  # Custom index name
+      logstash_prefix console-akash-network  # Custom index name
       include_timestamp true
       flush_interval 5s
       request_timeout 30s  # Add timeout setting
@@ -57,7 +57,7 @@ data:
     <filter **operator-ip**>
       @type record_transformer
       <record>
-        cluster "rtx4090-evergreen-akash-pub"
+        cluster "console-akash-network"
         pod "operator-ip"
       </record>
     </filter>
@@ -68,7 +68,7 @@ data:
       port 9200
       scheme http  # Change to HTTP since TLS is disabled
       logstash_format true
-      logstash_prefix rtx4090-evergreen-akash-pub-operator-ip  # Custom index name
+      logstash_prefix console-akash-network-operator-ip  # Custom index name
       include_timestamp true
       flush_interval 5s
       request_timeout 30s  # Add timeout setting
