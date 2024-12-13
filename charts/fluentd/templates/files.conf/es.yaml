@@ -10,43 +10,42 @@ data:
       log_level warn
     </system>
 
-    # Source, Filter, and Match for akash-provider logs
     <source>
       @type tail
-      path /var/log/containers/akash-provider-0_akash-services_*.log
-      pos_file /var/log/fluentd-akash-provider-0.log.pos
+      path /var/log/containers/provider-console-*_staging_*.log
+      pos_file /var/log/fluentd-provider-console.log.pos
       read_from_head true
-      tag akash-provider
+      tag provider-console
       <parse>
         @type none
       </parse>
     </source>
 
-    <filter **akash-provider**>
+    <filter **provider-console**>
       @type record_transformer
       <record>
-        cluster "rtx4090-evergreen-akash-pub"
-        pod "akash-provider-0"
+        cluster "console-akash-network"
+        pod ${tag}
+        namespace "staging"
       </record>
     </filter>
 
-    <match **akash-provider**>
+    <match **provider-console**>
       @type elasticsearch
       host "100.70.2.34"  # Elasticsearch server IP
       port 9200
       scheme http  # Change to HTTP since TLS is disabled
       logstash_format true
-      logstash_prefix rtx4090-evergreen-akash-pub  # Custom index name
+      logstash_prefix staging-provider-console  # Custom index name
       include_timestamp true
       flush_interval 5s
       request_timeout 30s  # Add timeout setting
     </match>
 
-    # Source, Filter, and Match for operator-ip logs
     <source>
       @type tail
-      path /var/log/containers/operator-ip-*_akash-services_operator-ip-*.log
-      pos_file /var/log/fluentd-operator-ip.log.pos
+      path /var/log/containers/provider-console-api-*_staging_*.log
+      pos_file /var/log/fluentd-provider-console-api.log.pos
       read_from_head true
       tag operator-ip
       <parse>
@@ -54,22 +53,55 @@ data:
       </parse>
     </source>
 
-    <filter **operator-ip**>
+    <filter **provider-console-api**>
       @type record_transformer
       <record>
-        cluster "rtx4090-evergreen-akash-pub"
-        pod "operator-ip"
+        cluster "console-akash-network"
+        pod ${tag}
+        namespace "staging"
       </record>
     </filter>
 
-    <match **operator-ip**>
+    <match **provider-console-api**>
       @type elasticsearch
       host "100.70.2.34"
       port 9200
       scheme http  # Change to HTTP since TLS is disabled
       logstash_format true
-      logstash_prefix rtx4090-evergreen-akash-pub-operator-ip  # Custom index name
+      logstash_prefix staging-provider-console-api
       include_timestamp true
       flush_interval 5s
       request_timeout 30s  # Add timeout setting
+    </match>
+
+    <source>
+      @type tail
+      path /var/log/containers/provider-console-security-*_staging_*.log
+      pos_file /var/log/fluentd-provider-console-security.log.pos
+      read_from_head true
+      tag provider-console-security
+      <parse>
+        @type none
+      </parse>
+    </source>
+
+    <filter **provider-console-security**>
+      @type record_transformer
+      <record>
+        cluster "console-akash-network"
+        pod ${tag}
+        namespace "staging"
+      </record>
+    </filter>
+
+    <match **provider-console-security**>
+      @type elasticsearch
+      host "100.70.2.34"
+      port 9200
+      scheme http
+      logstash_format true
+      logstash_prefix staging-provider-console-security
+      include_timestamp true
+      flush_interval 5s
+      request_timeout 30s
     </match>
